@@ -1,4 +1,4 @@
-import logo from "../images/logo.png";
+import logo from "../images/logo.webp";
 import { StarDoodle, SparkleDoodle } from "./Doodles.jsx";
 
 const socials = [
@@ -118,7 +118,12 @@ function Footer() {
 
       <div className="site-footer__inner">
         <div className="footer-col footer-col--brand">
-          <img className="footer-logo" src={logo} alt="Shopbinsblndr" />
+          <img
+            className="footer-logo"
+            src={logo}
+            alt="Shopbinsblndr"
+            loading="lazy"
+          />
           <p className="footer-tagline">Artsy goodies made with love</p>
           <div className="footer-socials">
             {socials.map((s) => (

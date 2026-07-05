@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import logo from "../images/logo.png";
+import logo from "../images/logo.webp";
 
 function Header() {
   const [menuOpen, setMenuOpen] = useState(false);

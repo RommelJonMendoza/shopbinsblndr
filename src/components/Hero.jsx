@@ -1,4 +1,4 @@
-import tindahanPhoto from "../images/tindahan.png";
+import tindahanPhoto from "../images/tindahan.webp";
 import "./Hero.css";
 
 function Hero() {
