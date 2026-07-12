@@ -5,15 +5,47 @@ function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [submenuOpen, setSubmenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [hidden, setHidden] = useState(false);
   const [cartCount] = useState(0); // wire up to real cart state later
 
   const submenuRef = useRef(null);
+  const lastScrollY = useRef(0);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
-    window.addEventListener("scroll", onScroll);
+    lastScrollY.current = window.scrollY;
+
+    const onScroll = () => {
+      const currentY = window.scrollY;
+      setScrolled(currentY > 8);
+
+      // Don't hide the header while the mobile nav is open — it'd be
+      // jarring for the menu to disappear mid-browse.
+      if (menuOpen) {
+        lastScrollY.current = currentY;
+        return;
+      }
+
+      const delta = currentY - lastScrollY.current;
+
+      if (currentY < 80) {
+        setHidden(false); // always show near the very top
+      } else if (delta > 4) {
+        setHidden(true); // scrolling down
+      } else if (delta < -4) {
+        setHidden(false); // scrolling up
+      }
+
+      lastScrollY.current = currentY;
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  }, [menuOpen]);
+
+  // Always reveal the header the moment the mobile menu opens
+  useEffect(() => {
+    if (menuOpen) setHidden(false);
+  }, [menuOpen]);
 
   // Close the mobile menu whenever the viewport grows back to desktop size
   useEffect(() => {
@@ -56,7 +88,11 @@ function Header() {
   };
 
   return (
-    <header className={`site-header ${scrolled ? "is-scrolled" : ""}`}>
+    <header
+      className={`site-header ${scrolled ? "is-scrolled" : ""} ${
+        hidden ? "is-hidden" : ""
+      }`}
+    >
       <div className="site-header__inner">
         <button
           className={`hamburger ${menuOpen ? "is-open" : ""}`}

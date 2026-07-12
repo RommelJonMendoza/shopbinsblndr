@@ -1,5 +1,6 @@
 import logo from "../images/logo.webp";
 import { StarDoodle, SparkleDoodle } from "./Doodles.jsx";
+import Reveal from "./Reveal.jsx";
 
 const socials = [
   {
@@ -117,7 +118,7 @@ function Footer() {
       <SparkleDoodle className="footer__sparkle" />
 
       <div className="site-footer__inner">
-        <div className="footer-col footer-col--brand">
+        <Reveal as="div" className="footer-col footer-col--brand">
           <img
             className="footer-logo"
             src={logo}
@@ -139,9 +140,9 @@ function Footer() {
               </a>
             ))}
           </div>
-        </div>
+        </Reveal>
 
-        <div className="footer-col footer-col--links">
+        <Reveal as="div" className="footer-col footer-col--links" delay={100}>
           <h3 className="footer-heading">Shop</h3>
           <ul className="footer-list">
             {shopLinks.map((l) => (
@@ -150,9 +151,9 @@ function Footer() {
               </li>
             ))}
           </ul>
-        </div>
+        </Reveal>
 
-        <div className="footer-col footer-col--contact">
+        <Reveal as="div" className="footer-col footer-col--contact" delay={200}>
           <h3 className="footer-heading">Get In Touch</h3>
           <ul className="footer-list footer-list--contact">
             <li>
@@ -164,12 +165,12 @@ function Footer() {
               <span>Cabanatuan City, Nueva Ecija, Philippines</span>
             </li>
           </ul>
-        </div>
+        </Reveal>
       </div>
 
-      <div className="site-footer__bottom">
+      <Reveal as="div" className="site-footer__bottom" delay={280}>
         <p>&copy; {year} Shopbinsblndr. All rights reserved.</p>
-      </div>
+      </Reveal>
     </footer>
   );
 }

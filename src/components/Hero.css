@@ -72,8 +72,8 @@
   font-family: var(--font-script);
   font-size: 1.4rem;
   color: var(--pin-red);
-  transform: rotate(-2deg);
   margin: 0 0 4px;
+  animation: artsy-rise-tilt 0.7s ease-out both;
 }
 
 .artsy-hero__tagline {
@@ -88,6 +88,8 @@
     4px 4px 0 var(--coral),
     4px 4px 14px rgba(58, 35, 19, 0.25);
   margin: 0 0 22px;
+  animation: artsy-rise 0.7s ease-out both;
+  animation-delay: 0.12s;
 }
 
 .artsy-hero__love {
@@ -112,6 +114,8 @@
   line-height: 1.6;
   color: var(--ink-soft);
   margin: 0 0 30px;
+  animation: artsy-rise 0.7s ease-out both;
+  animation-delay: 0.26s;
 }
 
 /* --- art (right) --- */
@@ -121,6 +125,8 @@
   align-items: center;
   justify-content: center;
   min-height: 480px;
+  animation: artsy-rise-scale 0.8s ease-out both;
+  animation-delay: 0.32s;
 }
 
 .artsy-hero__burst {
@@ -203,6 +209,36 @@
 }
 
 /* --- motion --- */
+@keyframes artsy-rise {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes artsy-rise-tilt {
+  from {
+    opacity: 0;
+    transform: translateY(24px) rotate(-2deg);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) rotate(-2deg);
+  }
+}
+@keyframes artsy-rise-scale {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.94);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
 @keyframes artsy-spin {
   to {
     transform: rotate(360deg);
@@ -240,8 +276,15 @@
   .artsy-hero__burst,
   .artsy-hero__sparkle,
   .artsy-hero__heart,
-  .artsy-hero__photo {
+  .artsy-hero__photo,
+  .artsy-hero__kicker,
+  .artsy-hero__tagline,
+  .artsy-hero__subtext,
+  .artsy-hero__art {
     animation: none;
+  }
+  .artsy-hero__kicker {
+    transform: rotate(-2deg);
   }
 }
 
